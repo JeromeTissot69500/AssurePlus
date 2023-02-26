@@ -1,7 +1,12 @@
 import os
 
 from flask import Flask
-from .config import DevelopmentConfig
+from flask_login import LoginManager
+from .db.db import db, migrate
+from .controller.login import login
+from .controller.registration import registration
+from .controller.index import index
+from .controller.logout import logout
 
 
 def create_app(test_config=None):
@@ -10,7 +15,7 @@ def create_app(test_config=None):
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
-        app.config.from_object(DevelopmentConfig)
+        app.config.from_pyfile('DevelopmentConfig.py', silent=True)
     else:
         # load the test config if passed in
         app.config.from_object(test_config)
@@ -21,9 +26,16 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
-    @app.route('/')
-    def initialisation():
-        return 'Initialisation flask'
+    app.register_blueprint(login)
+    app.register_blueprint(registration)
+    app.register_blueprint(index)
+    app.register_blueprint(logout)
+
+    db.init_app(app)
+    migrate.init_app(app, db)
+
+
+    with app.app_context():
+        db.create_all()
 
     return app

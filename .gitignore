@@ -131,7 +131,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-venv-assure-plus/
+venv-assure-plus-app/
 
 # Spyder project settings
 .spyderproject
