@@ -7,6 +7,7 @@ from .controller.login import login
 from .controller.registration import registration
 from .controller.index import index
 from .controller.logout import logout
+from .controller.user_account import user_account
 
 
 def create_app(test_config=None):
@@ -30,6 +31,7 @@ def create_app(test_config=None):
     app.register_blueprint(registration)
     app.register_blueprint(index)
     app.register_blueprint(logout)
+    app.register_blueprint(user_account)
 
     db.init_app(app)
     migrate.init_app(app, db)

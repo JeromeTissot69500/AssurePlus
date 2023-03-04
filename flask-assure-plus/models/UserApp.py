@@ -104,6 +104,14 @@ class UserApp(db.Model):
     @password.setter
     def password(self, password: str):
         self._password = password
+
+    @hybrid_property
+    def full_name(self):
+        return f"{self._last_name} {self._first_name}"
+    
+    @hybrid_property
+    def format_birthday(self):
+        return dt.strftime(self._birthday, "%Y-%m-%d")
     
     def __repr__(self):
         return f"<UserApp: {self.email}"

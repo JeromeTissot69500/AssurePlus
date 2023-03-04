@@ -11,7 +11,7 @@
 <body class="index-sizing d-flex flex-column container-fluid justify-content-between">
     <header class="navbar bg-light row justify-content-between align-items-center shadow-sm">
         <div class="col-6 col-md-4">
-            <a href="">
+            <a href="{{url_for('index.index_get')}}">
                 <img class="home-logo ms-3" src="{{url_for('static',filename='img/home-logo.svg')}}">
             </a>
         </div>
@@ -19,7 +19,7 @@
         <nav class="col-6 col-md-4">
             <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <a class="nav-link"href="#">
+                    <a class="nav-link"href="{{url_for('user_account.user_account_get', email=session['username'])}}">
                         <img class="home-logo" src="{{url_for('static',filename='img/account-logo.svg')}}">
                     </a>
                 </li>
