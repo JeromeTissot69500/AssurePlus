@@ -29,6 +29,7 @@ class UserApp(db.Model):
         self._email = email
         self._password = password
 
+    # Define getter and setter property
     @hybrid_property
     def id_user(self):
         return self._id_user
@@ -47,7 +48,7 @@ class UserApp(db.Model):
 
     @last_name.setter
     def last_name(self, last_name: str):
-        self._assure_number = last_name
+        self._last_name = last_name
 
     @hybrid_property
     def first_name(self):
@@ -110,6 +111,7 @@ class UserApp(db.Model):
         return f"{self._last_name} {self._first_name}"
     
     @hybrid_property
+    # get birthday in text
     def format_birthday(self):
         return dt.strftime(self._birthday, "%Y-%m-%d")
     

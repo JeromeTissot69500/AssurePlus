@@ -25,5 +25,5 @@ def login_post():
             session['username'] = user_email
             return redirect(url_for('index.index_get'))
         return render_template('login.html', error_log='Adresse e-mail ou mot de passe invalide')
-    except:
+    except Exception:
         return render_template('login.html', error_log='Adresse e-mail ou mot de passe invalide')

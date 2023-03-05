@@ -1,7 +1,6 @@
 import os
 
 from flask import Flask
-from flask_login import LoginManager
 from .db.db import db, migrate
 from .controller.login import login
 from .controller.registration import registration
