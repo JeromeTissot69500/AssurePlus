@@ -2,6 +2,7 @@ import os
 
 from flask import Flask
 from .db.db import db, migrate
+from .config.DevelopmentConfig import DevelopmentConfig
 from .controller.login import login
 from .controller.registration import registration
 from .controller.index import index
@@ -12,10 +13,11 @@ from .controller.user_account import user_account
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
+    app.config.from_object(DevelopmentConfig)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
-        app.config.from_pyfile('DevelopmentConfig.py', silent=True)
+        app.config.from_pyfile('ProductionConfig.py', silent=True)
     else:
         # load the test config if passed in
         app.config.from_object(test_config)
