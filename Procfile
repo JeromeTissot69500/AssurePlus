@@ -1,2 +1,2 @@
 # Modify this Procfile to fit your needs
-web: gunicorn server:flask-assure-plus
+web: gunicorn "flask-assure-plus:create_app()"
